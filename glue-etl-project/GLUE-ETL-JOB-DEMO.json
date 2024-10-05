@@ -1,0 +1,42 @@
+{
+  "name" : "GLUE-ETL-JOB-DEMO",
+  "jobMode" : "SCRIPT",
+  "description" : "",
+  "role" : "arn:aws:iam::879381269155:role/glue-etl-access-role",
+  "executionProperty" : {
+    "maxConcurrentRuns" : 1
+  },
+  "command" : {
+    "name" : "glueetl",
+    "scriptLocation" : "s3://aws-glue-assets-879381269155-us-east-1/scripts/GLUE-ETL-JOB-DEMO.py",
+    "pythonVersion" : "3"
+  },
+  "defaultArguments" : {
+    "--S3_OUTPUT_PATH" : "s3://pyspark-project-bucket/output/",
+    "--enable-metrics" : "true",
+    "--spark-event-logs-path" : "s3://aws-glue-assets-879381269155-us-east-1/sparkHistoryLogs/",
+    "--enable-job-insights" : "true",
+    "--S3_INPUT_PATH" : "s3://pyspark-project-bucket/input/hotel_bookings 2.csv",
+    "--enable-observability-metrics" : "true",
+    "--enable-glue-datacatalog" : "true",
+    "--enable-continuous-cloudwatch-log" : "true",
+    "--COL_TO_DROP" : "arrival_date_month",
+    "--job-bookmark-option" : "job-bookmark-disable",
+    "--job-language" : "python",
+    "--TempDir" : "s3://aws-glue-assets-879381269155-us-east-1/temporary/"
+  },
+  "maxRetries" : 0,
+  "allocatedCapacity" : 7,
+  "timeout" : 20,
+  "maxCapacity" : 7.0,
+  "glueVersion" : "4.0",
+  "numberOfWorkers" : 7,
+  "workerType" : "G.1X",
+  "executionClass" : "STANDARD",
+  "sourceControlDetails" : {
+    "provider" : "GITHUB",
+    "repository" : "pyspark-project",
+    "branch" : "main",
+    "folder" : "glue-etl-project"
+  }
+}
