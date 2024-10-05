@@ -27,3 +27,9 @@ df=df.drop(COL_TO_DROP)
 df=df.repartition(1).write.mode("overwrite").parquet(S3_OUTPUT_PATH)
 
 job.commit()
+
+#Parameters passed in advance settings :
+
+#--S3_INPUT_PATH : s3://pyspark-project-bucket/input/hotel_bookings 2.csv
+#--S3_OUTPUT_PATH : s3://pyspark-project-bucket/output/
+#--COL_TO_DROP : arrival_date_month
